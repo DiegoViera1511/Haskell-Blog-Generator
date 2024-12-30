@@ -17,4 +17,9 @@ convertStructure structure =
       
     Markup.Paragraph p ->
       Html.p_ $ Html.txt_ p
-    --TODO Other cases
+      
+    Markup.OrderedList list ->
+      Html.ol_ $ map (Html.p_ . Html.txt_) list
+
+    Markup.CodeBlock list ->
+      Html.code_ (unlines list)
