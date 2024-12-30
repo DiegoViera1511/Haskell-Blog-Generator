@@ -4,7 +4,7 @@ import qualified Markup
 import qualified Html 
 
 convert :: Html.Title -> Markup.Document -> Html.Html
-convert title = Html.html_ title . concatStructure . map convertStructure 
+convert title = Html.html_ title . Html.concatStructure . map convertStructure 
 
 convertStructure :: Markup.Structure -> Html.Structure
 convertStructure structure =
