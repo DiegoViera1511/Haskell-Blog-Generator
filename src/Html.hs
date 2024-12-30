@@ -9,7 +9,8 @@ module Html
   , h1_
   , p_
   , ul_
-  --TODO add ol_ and code_
+  , ol_
+  , code_
   , render
   )
   where
@@ -57,7 +58,12 @@ ul_ :: [Structure] -> Structure
 ul_ =
   Structure . el "ul" . concat . map (el "li" . getStructureString)
 
---TODO Other of tags 
+ol_ :: [Structure] -> Structure
+ol_ =
+  Structure . el "ol" . concat . map (el "li" . getStructureString)
+
+code_ :: String -> Structure
+code_ = Structure . el "pre" . escape
 
 instance Semigroup Structure where
   (<>) c1 c2 =
