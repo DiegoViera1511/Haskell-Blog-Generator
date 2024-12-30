@@ -15,7 +15,8 @@ data Structure
   = Heading Natural String
   | Paragraph String
   | UnorderedList [String]
-  --TODO add other structures
+  | OrderedList [String]
+  | CodeBlock [String]
   deriving (Eq, Show) 
 
 
@@ -56,7 +57,23 @@ parseLines context txts =
               _ ->
                 maybe id (:) context (parseLines (Just (Paragraph line)) rest)
 
-    --TODO Other cases
+    -- Ordered list case
+    ('#' : ' ' : line) : rest ->
+      case context of
+        Just (OrderedList list) ->
+          parseLines (Just (OrderedList (list <> [trim line]))) rest
+
+        _ ->
+          maybe id (:) context (parseLines (Just (OrderedList [trim line])) rest)
+
+    -- Code block case
+    ('>' : ' ' : line) : rest ->
+      case context of
+        Just (CodeBlock code) ->
+          parseLines (Just (CodeBlock (code <> [line]))) rest
+
+        _ ->
+          maybe id (:) context (parseLines (Just (CodeBlock [line])) rest)
 
 trim :: String -> String
 trim = unwords . words
