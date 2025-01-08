@@ -1,7 +1,0 @@
-* Compiling programs with ghc
-
-Hola Buenas tardes
-
-- Defines the main function in the source file
-- Defines the module name to be Main or does not have a module declaration
-
