@@ -15,12 +15,12 @@ main = do
                 let 
                     writeResult = writeFile output (process title content)
                 if exists
-                    then whenIO confirm writeResult
+                    then writeResult
                     else writeResult
 
 confirm :: IO Bool
 confirm = do
-  putStrLn "Are you sure? (y/n)"
+  putStrLn "> Are you sure ? (y/n)"
   answer <- getLine
   case answer of
     "y" -> pure True
