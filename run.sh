@@ -5,58 +5,83 @@ stack build
 clear
 
 function GenerateBlog {
-    echo -n "> Enter the title of the blog: "
+    echo -n "> Enter the title of the blog ( Press enter to use default name ): "
     read title
     echo " "
     if [ -z "$title" ]; then
         title="blog"
     fi
-
-    echo -n "> Enter the styles route of the blog: "
-    read styles
-    echo " "
-    if [ -z "$styles" ]; then
-        echo "Using default styles route ./hs-blog-gen/Styles/defaultStyles.css"
+    while true; do
         echo " "
-        styles="./Styles/defaultStyles.css"
-    elif [ ! -d "$styles" ]; then
-        echo "Error: Invalid styles route"
-        exit 1
-    fi
-
-    echo -n "> Enter the input route of the blog: "
-    read input
-    echo " "
-    if [ -z "$input" ]; then
-        echo "Using default input route ./hs-blog-gen/Input/default.txt"
+        echo -n "> Enter the styles route of the blog ( Press enter to use default styles ): "
+        read styles
         echo " "
-        input="./Input/default.txt"
-    elif [ ! -d "$input" ]; then
-        echo "Error: Invalid input route"
-        exit 1
-    fi
-
-    echo -n "> Enter the output route of the blog: "
-    read output
+        if [ -z "$styles" ]; then
+            echo "Using default styles route ./hs-blog-gen/Styles/defaultStyles.css"
+            styles="./Styles/defaultStyles.css"
+            break
+        elif [ ! -d "$styles" ]; then
+            echo "Error: invalid styles route"
+            echo " "
+        else
+            echo "Using styles "$styles" "
+            break
+        fi
+    done
+    
     echo " "
-    if [ -z "$output" ]; then
-        echo "Using default output route ./hs-blog-gen/Output/"$title".html"
+
+    while true; do
         echo " "
-        output="./Output/"$title".html"
-    elif [ ! -d "$output" ]; then
-        echo "Error: Invalid output route"
-        exit 1
-    fi
+        echo -n "> Enter the input route of the blog ( Press enter to use default input ): "
+        read input
+        echo " "
+        if [ -z "$input" ]; then
+            echo "Using default input route ./hs-blog-gen/Input/default.txt"
+            input="./Input/default.txt"
+            break
+        elif [ ! -d "$input" ]; then
+            echo "Error: invalid input route"
+            echo " "
+        else
+            echo "Using input "$input" "
+            break
+        fi
+    done
+
+    echo " " 
+
+    while true; do
+        echo " "
+        echo -n "> Enter the output route of the blog: "
+        read output
+        echo " "
+        if [ -z "$output" ]; then
+            echo "Using default output route ./hs-blog-gen/Output/"$title".html"
+            output="./Output/"$title".html"
+            break
+        elif [ ! -d "$output" ]; then
+            echo "Error: Invalid output route"
+            echo " "
+        else
+            echo "Using output "$output" "
+            break
+        fi
+    done
+
+    echo " "
 
     echo "Processing..."
-    echo " " 
+
     stack exec hs-blog-gen-exe $title $styles $input $output
 
-    echo "> Open blog ? (y/n)"
-    echo -n "> "
-    read open
-    echo " "
     while true; do
+        echo " "
+        echo "> Open blog ? (y/n)"
+        echo " "
+        echo -n "> "
+        read open
+        echo " "
         if [ "$open" == "y" ]; then
             if [[ "$OSTYPE" == "linux-gnu"* ]]; then
                 xdg-open "$output"
@@ -67,17 +92,12 @@ function GenerateBlog {
             else
                 echo "No se pudo detectar el sistema operativo para abrir el archivo HTML."
             fi
+            break
         elif [ "$open" == "n" ]; then
-            echo " "
             break
         else
-            echo " "
             echo "Invalid option please insert y (yes) or n (no)"
-            echo " "
         fi
-        read open
-        echo " "
-        break
     done
 }
 
@@ -104,8 +124,7 @@ while true; do
             break
             ;;
         *)  
-            echo "Invalid option"
-            echo " "
+            echo "Invalid option please insert 1 ( New Blog ) or 2 ( Exit )"
             ;;
     esac
 done
