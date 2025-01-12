@@ -28,9 +28,9 @@ function GenerateBlog {
     read input
     echo " "
     if [ -z "$input" ]; then
-        echo "Using default input route ./hs-blog-gen/Input-Output/default.txt"
+        echo "Using default input route ./hs-blog-gen/Input/default.txt"
         echo " "
-        input="./Input-Output/default.txt"
+        input="./Input/default.txt"
     elif [ ! -d "$input" ]; then
         echo "Error: Invalid input route"
         exit 1
@@ -40,9 +40,9 @@ function GenerateBlog {
     read output
     echo " "
     if [ -z "$output" ]; then
-        echo "Using default output route hs-blog-gen/Input-Output/"$title".html"
+        echo "Using default output route ./hs-blog-gen/Output/"$title".html"
         echo " "
-        output="./Input-Output/"$title".html"
+        output="./Output/"$title".html"
     elif [ ! -d "$output" ]; then
         echo "Error: Invalid output route"
         exit 1
