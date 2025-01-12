@@ -14,6 +14,7 @@ type Document
 data Structure
   = Heading Natural String
   | Paragraph String
+  | HorizontalLine String
   | UnorderedList [String]
   | OrderedList [String]
   | CodeBlock [String]
@@ -59,6 +60,10 @@ parseLines context txts =
 
         _ ->
           maybe id (:) context (parseLines (Just (CodeBlock [line])) rest)
+    
+    -- Horizontal line case
+    ("---") : rest ->
+      maybe id (:) context (HorizontalLine "_" : parseLines Nothing rest)
     
     -- Paragraph case
     currentLine : rest ->

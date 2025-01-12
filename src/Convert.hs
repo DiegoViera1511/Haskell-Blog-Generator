@@ -23,3 +23,6 @@ convertStructure structure =
 
     Markup.CodeBlock list ->
       Html.code_ (unlines list)
+      
+    Markup.HorizontalLine _ -> 
+      Html.hr_
