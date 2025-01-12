@@ -1,6 +1,7 @@
 module Html
   ( Html
   , Title
+  , Style
   , Structure
   , Content
   , concatStructure
@@ -27,11 +28,14 @@ newtype Content
 type Title
   = String
 
-html_ :: Title -> Structure -> Html
-html_ title content =
+type Style
+  = String
+
+html_ :: Title -> Style -> Structure -> Html
+html_ title styles content =
   Html
     ( el "html"
-      ( el "head" (el "title" (escape title))
+      ( el "head" ( el "title" (escape title) <> el "style" styles )
         <> el "body" (getStructureString content)
       )
     )

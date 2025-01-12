@@ -12,6 +12,18 @@ function GenerateBlog {
         title="blog"
     fi
 
+    echo -n "> Enter the styles route of the blog: "
+    read styles
+    echo " "
+    if [ -z "$styles" ]; then
+        echo "Using default styles route ./hs-blog-gen/Styles/defaultStyles.css"
+        echo " "
+        styles="./Styles/defaultStyles.css"
+    elif [ ! -d "$styles" ]; then
+        echo "Error: Invalid styles route"
+        exit 1
+    fi
+
     echo -n "> Enter the input route of the blog: "
     read input
     echo " "
@@ -38,7 +50,7 @@ function GenerateBlog {
 
     echo "Processing..."
     echo " " 
-    stack exec hs-blog-gen-exe $title $input $output
+    stack exec hs-blog-gen-exe $title $styles $input $output
 
     echo "> Open blog ? (y/n)"
     echo -n "> "

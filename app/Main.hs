@@ -9,11 +9,12 @@ main :: IO ()
 main = do
     getArgs >>= \args ->
         case args of
-            [title , input , output] -> do
-                content <- readFile input
+            [title , stylesinput , contentinput , output] -> do
+                styles <- readFile stylesinput
+                content <- readFile contentinput
                 exists <- doesFileExist output
                 let 
-                    writeResult = writeFile output (process title content)
+                    writeResult = writeFile output (process title styles content)
                 if exists
                     then writeResult
                     else writeResult
@@ -36,5 +37,5 @@ whenIO cond action = do
     then action
     else pure ()                 
 
-process :: Html.Title -> String -> String
-process title = Html.render . convert title . Markup.parse
+process :: Html.Title -> String -> String -> String
+process title style = Html.render . convert title style . Markup.parse

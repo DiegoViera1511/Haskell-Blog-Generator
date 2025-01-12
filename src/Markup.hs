@@ -42,21 +42,6 @@ parseLines context txts =
         _ ->
           maybe id (:) context (parseLines (Just (UnorderedList [trim line])) rest)
     
-    -- Paragraph case
-    currentLine : rest ->
-      let
-        line = trim currentLine
-      in
-        if line == ""
-          then
-            maybe id (:) context (parseLines Nothing rest)
-          else
-            case context of
-              Just (Paragraph paragraph) ->
-                parseLines (Just (Paragraph (unwords [paragraph, line]))) rest
-              _ ->
-                maybe id (:) context (parseLines (Just (Paragraph line)) rest)
-
     -- Ordered list case
     ('#' : ' ' : line) : rest ->
       case context of
@@ -74,6 +59,21 @@ parseLines context txts =
 
         _ ->
           maybe id (:) context (parseLines (Just (CodeBlock [line])) rest)
+    
+    -- Paragraph case
+    currentLine : rest ->
+      let
+        line = trim currentLine
+      in
+        if line == ""
+          then
+            maybe id (:) context (parseLines Nothing rest)
+          else
+            case context of
+              Just (Paragraph paragraph) ->
+                parseLines (Just (Paragraph (unwords [paragraph, line]))) rest
+              _ ->
+                maybe id (:) context (parseLines (Just (Paragraph line)) rest)
 
 trim :: String -> String
 trim = unwords . words
