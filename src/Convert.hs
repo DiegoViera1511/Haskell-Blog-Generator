@@ -12,6 +12,12 @@ convertStructure structure =
     Markup.Heading 1 txt ->
       Html.h1_ $ Html.txt_ txt
 
+    Markup.Heading 2 txt ->
+      Html.h2_ $ Html.txt_ txt
+
+    Markup.Heading 3 txt ->
+      Html.h3_ $ Html.txt_ txt
+
     Markup.UnorderedList list ->
       Html.ul_ $ map (Html.p_ . Html.txt_) list
       
