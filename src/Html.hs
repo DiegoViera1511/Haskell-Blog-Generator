@@ -8,6 +8,7 @@ module Html
   , txt_
   , html_
   , h1_
+  , hr_
   , p_
   , ul_
   , ol_
@@ -68,6 +69,9 @@ ol_ =
 
 code_ :: String -> Structure
 code_ = Structure . el "pre" . escape
+
+hr_ :: Structure
+hr_ = Structure "<hr>"
 
 instance Semigroup Structure where
   (<>) c1 c2 =

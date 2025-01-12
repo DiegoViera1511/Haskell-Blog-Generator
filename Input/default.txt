@@ -1,5 +1,7 @@
 * Compiling programs with ghc
 
+---
+
 Running ghc invokes the Glasgow Haskell Compiler (GHC),
 and can be used to compile Haskell modules and programs into native
 executables and libraries.
