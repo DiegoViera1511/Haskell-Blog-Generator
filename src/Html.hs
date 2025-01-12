@@ -11,6 +11,7 @@ module Html
   , h2_
   , h3_
   , hr_
+  , img_
   , p_
   , ul_
   , ol_
@@ -78,6 +79,9 @@ ol_ =
 code_ :: String -> Structure
 code_ = Structure . el "pre" . escape
 
+img_ :: String -> Structure
+img_ = Structure . el_img_
+
 hr_ :: Structure
 hr_ = Structure "<hr>"
 
@@ -97,6 +101,9 @@ render html =
 el :: String -> String -> String
 el tag content =
   "<" <> tag <> ">" <> content <> "</" <> tag <> ">"
+
+el_img_ :: String -> String
+el_img_ src = el "div" $ "<img src=\"" <> src <> "\"" <> " alt=\"img\" " <> "/>"
 
 getStructureString :: Structure -> String
 getStructureString content =

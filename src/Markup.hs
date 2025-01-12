@@ -15,6 +15,7 @@ data Structure
   = Heading Natural String
   | Paragraph String
   | HorizontalLine String
+  | Image String
   | UnorderedList [String]
   | OrderedList [String]
   | CodeBlock [String]
@@ -68,6 +69,10 @@ parseLines context txts =
 
         _ ->
           maybe id (:) context (parseLines (Just (CodeBlock [line])) rest)
+    
+    -- * Image case
+    ('%' : ' ' : line) : rest ->
+      maybe id (:) context (Image (trim line) : parseLines Nothing rest)
     
     -- * Horizontal line case
     ('-' : '-' : '-' : line) : rest ->
