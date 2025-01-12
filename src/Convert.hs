@@ -3,8 +3,8 @@ module Convert where
 import qualified Markup
 import qualified Html 
 
-convert :: Html.Title -> Markup.Document -> Html.Html
-convert title = Html.html_ title . Html.concatStructure . map convertStructure 
+convert :: Html.Title -> String -> Markup.Document -> Html.Html
+convert title styles = Html.html_ title styles . Html.concatStructure . map convertStructure 
 
 convertStructure :: Markup.Structure -> Html.Structure
 convertStructure structure =
