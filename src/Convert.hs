@@ -17,7 +17,10 @@ convertStructure structure =
 
     Markup.Heading 3 txt ->
       Html.h3_ $ Html.txt_ txt
-
+    
+    Markup.Image src ->
+      Html.img_ src
+      
     Markup.UnorderedList list ->
       Html.ul_ $ map (Html.p_ . Html.txt_) list
       

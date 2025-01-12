@@ -6,6 +6,10 @@
 
 ---
 
+% /Users/diegovieramartinez/Desktop/Project/hs-blog-gen/Images/soloLevelingWallpaper.webp
+
+---
+
 Running ghc invokes the Glasgow Haskell Compiler (GHC),
 and can be used to compile Haskell modules and programs into native
 executables and libraries.
