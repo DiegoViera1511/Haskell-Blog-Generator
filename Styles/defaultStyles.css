@@ -6,6 +6,22 @@ h1 {
     background-clip: text;
 }
 
+h2 {
+    color: transparent;
+    width: fit-content;
+    background: linear-gradient(to top, rgb(163, 0, 178) , rgb(108, 0, 171));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+h3 {
+    color: transparent;
+    width: fit-content;
+    background: linear-gradient(to top, rgb(163, 0, 178) , rgb(108, 0, 171));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
 body {
     background-color: rgb(27, 27, 27);
     padding : 10px 10px 10px 10px

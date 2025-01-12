@@ -27,14 +27,22 @@ parse = parseLines Nothing . lines
 parseLines :: Maybe Structure -> [String] -> Document
 parseLines context txts =
   case txts of
-    -- done case
+    -- * done case
     [] -> maybeToList context
 
-    -- Heading 1 case
+    -- * Heading 1 case
     ('*' : ' ' : line) : rest ->
       maybe id (:) context (Heading 1 (trim line) : parseLines Nothing rest)
-    
-    -- Unordered list case
+
+    -- * Heading 2 case
+    ('*' : '*' : ' ' : line) : rest ->
+      maybe id (:) context (Heading 2 (trim line) : parseLines Nothing rest)
+
+    -- * Heading 3 case
+    ('*' : '*' : '*' : ' ' : line) : rest ->
+      maybe id (:) context (Heading 3 (trim line) : parseLines Nothing rest)
+
+    -- * Unordered list case
     ('-' : ' ' : line) : rest ->
       case context of
         Just (UnorderedList list) ->
@@ -43,7 +51,7 @@ parseLines context txts =
         _ ->
           maybe id (:) context (parseLines (Just (UnorderedList [trim line])) rest)
     
-    -- Ordered list case
+    -- * Ordered list case
     ('#' : ' ' : line) : rest ->
       case context of
         Just (OrderedList list) ->
@@ -52,7 +60,7 @@ parseLines context txts =
         _ ->
           maybe id (:) context (parseLines (Just (OrderedList [trim line])) rest)
 
-    -- Code block case
+    -- * Code block case
     ('>' : ' ' : line) : rest ->
       case context of
         Just (CodeBlock code) ->
@@ -61,11 +69,11 @@ parseLines context txts =
         _ ->
           maybe id (:) context (parseLines (Just (CodeBlock [line])) rest)
     
-    -- Horizontal line case
-    ("---") : rest ->
+    -- * Horizontal line case
+    ('-' : '-' : '-' : line) : rest ->
       maybe id (:) context (HorizontalLine "_" : parseLines Nothing rest)
     
-    -- Paragraph case
+    -- * Paragraph case
     currentLine : rest ->
       let
         line = trim currentLine

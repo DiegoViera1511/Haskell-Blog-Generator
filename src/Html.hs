@@ -8,6 +8,8 @@ module Html
   , txt_
   , html_
   , h1_
+  , h2_
+  , h3_
   , hr_
   , p_
   , ul_
@@ -58,6 +60,12 @@ p_ = Structure . el "p" . getContentString
 
 h1_ :: Content -> Structure
 h1_ = Structure . el "h1" . getContentString
+
+h2_ :: Content -> Structure
+h2_ = Structure . el "h2" . getContentString
+
+h3_ :: Content -> Structure
+h3_ = Structure . el "h3" . getContentString
 
 ul_ :: [Structure] -> Structure
 ul_ =
