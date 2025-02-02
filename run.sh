@@ -17,7 +17,7 @@ function GenerateBlog {
         read styles
         echo " "
         if [ -z "$styles" ]; then
-            echo "Using default styles route ./hs-blog-gen/Styles/defaultStyles.css"
+            echo "Using default styles route ./Haskell-Blog-Generator/Styles/defaultStyles.css"
             styles="./Styles/defaultStyles.css"
             break
         elif [ ! -d "$styles" ]; then
@@ -37,7 +37,7 @@ function GenerateBlog {
         read input
         echo " "
         if [ -z "$input" ]; then
-            echo "Using default input route ./hs-blog-gen/Input/default.txt"
+            echo "Using default input route ./Haskell-Blog-Generator/Input/default.txt"
             input="./Input/default.txt"
             break
         elif [ ! -d "$input" ]; then
@@ -57,7 +57,7 @@ function GenerateBlog {
         read output
         echo " "
         if [ -z "$output" ]; then
-            echo "Using default output route ./hs-blog-gen/Output/"$title".html"
+            echo "Using default output route ./Haskell-Blog-Generator/Output/"$title".html"
             output="./Output/"$title".html"
             break
         elif [ ! -d "$output" ]; then

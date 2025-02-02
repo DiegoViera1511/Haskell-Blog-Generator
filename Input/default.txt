@@ -1,39 +1,43 @@
-* H1
+* Lets talk about Solo Leveling
 
-** H2
+** An amazing manwha with anime adaptation
 
-*** H3
-
----
-
-% /Users/diegovieramartinez/Desktop/Project/hs-blog-gen/Images/soloLevelingWallpaper.webp
+*** One of the best of 2024
 
 ---
 
-Running ghc invokes the Glasgow Haskell Compiler (GHC),
-and can be used to compile Haskell modules and programs into native
-executables and libraries.
+% /Users/pablogomezvidal/Documents/Codes/projects/Haskell-Blog-Generator/Images/soloLevelingWallpaper.webp
 
-Create a new Haskell source file named hello.hs, and write
-the following code in it:
+---
 
-> main = putStrLn "Hello, Haskell!"
+Solo Leveling is a Korean web novel written by Chu-Gong. 
+It was first serialized by Papyrus on November 4, 2016 and ended with 14 volumes and 270 chapters. On April 13, 2018, a webtoon serialization was released on KakaoPage, drawn by artists Gi So-Ryeong and Jang Sung-Rak. 
+It officially concluded on December 29, 2021 with 179 chapters released. A spin-off webtoon series based on the web novels side stories was launched roughly 13 months later on January 20, 2023 and ended on May 31st, 2023, with 21 chapters released.
 
-Now, we can compile the program by invoking ghc with the file name:
+> main = putStrLn "Solo Leveling is perfect!"
 
-> -> ghc hello.hs
-> [1 of 1] Compiling Main             ( hello.hs, hello.o )
-> Linking hello ...
 
-GHC created the following files:
+The Shadow Monarch Gang:
 
-- hello.hi - Haskell interface file
-- hello.o - Object file, the output of the compiler before linking
-- hello (or hello.exe on Microsoft Windows) - A native runnable executable.
+- Sung Jin-woo
+- Shadow Army
+- Igris
+- Beru
+- Tusk
+- Iron
+- Tank
+- Greed
+- Kaisel
+- Bellion
 
-GHC will produce an executable when the source file satisfies both conditions:
+Ranking of powers between hunter
 
-# Defines the main function in the source file
-# Defines the module name to be Main or does not have a module declaration
+# rank E
+# rank D
+# rank C
+# rank B
+# rank A
+# rank S
+# National Rank
 
-Otherwise, it will only produce the .o and .hi files.
+Super recommended anime
